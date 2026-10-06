@@ -87,3 +87,39 @@ JOIN orders o
 ON c.customer_id = o.customer_id
 GROUP BY c.customer_name
 HAVING SUM(o.sales) > 2000;
+
+SELECT 
+c.region,
+SUM(o.sales) AS total_sales,
+AVG(o.discount) AS average_discount,
+COUNT(o.order_id) AS order_count
+FROM orders o
+JOIN customers c
+ON o.customer_id = c.customer_id
+GROUP BY c.region
+ORDER BY c.region;
+
+SELECT
+c.region,
+COUNT(CASE WHEN o.sales > 1000 THEN 1 END) AS high_value,
+COUNT(CASE WHEN o.sales <= 1000 THEN 1 END) AS low_value
+FROM orders o
+JOIN customers c
+ON o.customer_id = c.customer_id
+GROUP BY c.region
+ORDER BY c.region;
+
+SELECT
+c.customer_name,
+SUM(o.sales) AS total_sales,
+AVG(o.discount) AS average_discount,
+COUNT(o.order_id) AS order_count,
+CASE
+WHEN SUM(o.sales) > 2500 THEN 'VIP'
+ELSE 'REGULAR'
+END AS customer_type
+FROM customers c
+JOIN orders o
+ON c.customer_id = o.customer_id
+GROUP BY c.customer_id, c.customer_name
+ORDER BY total_sales DESC;
