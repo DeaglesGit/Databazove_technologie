@@ -1,0 +1,12 @@
+validation_rule,invalid_rows
+invalid_product,0
+invalid_region,0
+invalid_order_date,3
+invalid_delivery_date,10
+invalid_sales_amount,12
+delivery_before_order,18
+invalid_discount,20
+missing_customer,22
+duplicate_order_id,22
+invalid_quantity,24
+invalid_phone,34
